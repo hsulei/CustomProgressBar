@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--完成的颜色-->
+    <attr name="reach_color" format="color"></attr>
+    <!--完成的高度-->
+    <attr name="reach_height" format="dimension"></attr>
+    <!--文字的颜色-->
+    <attr name="text_color" format="color"></attr>
+    <!--文字的大小-->
+    <attr name="text_size" format="dimension"></attr>
+    <!--没有完成的颜色-->
+    <attr name="unreach_color" format="color"></attr>
+    <!--没有到达的高度-->
+    <attr name="unreach_height" format="dimension"></attr>
+    <!--文本间距-->
+    <attr name="text_margin" format="dimension"></attr>
+    <!--水平进度条自定义属性-->
+    <declare-styleable name="HorizontalProgressBar">
+        <!--完成的颜色-->
+        <attr name="reach_color" ></attr>
+        <!--完成的高度-->
+        <attr name="reach_height" ></attr>
+        <!--文字的颜色-->
+        <attr name="text_color" ></attr>
+        <!--文字的大小-->
+        <attr name="text_size"></attr>
+        <!--没有完成的颜色-->
+        <attr name="unreach_color" ></attr>
+        <!--没有到达的高度-->
+        <attr name="unreach_height" ></attr>
+        <!--文本间距-->
+        <attr name="text_margin" ></attr>
+
+    </declare-styleable>
+    <!--圆形进度条自定义属性-->
+    <declare-styleable name="RoundProgressBar">
+        <!--半径-->
+        <attr name="radius" format="dimension"></attr>
+        <!--文本颜色-->
+        <attr name="text_color" ></attr>
+    </declare-styleable>
+</resources>

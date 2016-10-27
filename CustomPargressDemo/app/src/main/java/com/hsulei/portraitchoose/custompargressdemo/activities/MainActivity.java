@@ -1,7 +1,9 @@
-package com.hsulei.portraitchoose.custompargressdemo;
+package com.hsulei.portraitchoose.custompargressdemo.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.hsulei.portraitchoose.custompargressdemo.R;
 
 public class MainActivity extends AppCompatActivity {
 
