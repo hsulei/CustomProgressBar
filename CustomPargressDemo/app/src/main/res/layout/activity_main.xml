@@ -10,8 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hsulei.portraitchoose.custompargressdemo.activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.hsulei.portraitchoose.custompargressdemo.view.HorizontalProgressBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:progress="50"
         android:text="Hello World!" />
 </RelativeLayout>

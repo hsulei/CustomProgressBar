@@ -33,11 +33,4 @@
         <attr name="text_margin" ></attr>
 
     </declare-styleable>
-    <!--圆形进度条自定义属性-->
-    <declare-styleable name="RoundProgressBar">
-        <!--半径-->
-        <attr name="radius" format="dimension"></attr>
-        <!--文本颜色-->
-        <attr name="text_color" ></attr>
-    </declare-styleable>
 </resources>

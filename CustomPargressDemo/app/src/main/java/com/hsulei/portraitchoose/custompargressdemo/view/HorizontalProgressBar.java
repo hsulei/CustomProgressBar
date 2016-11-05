@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ProgressBar;
 
@@ -118,8 +118,9 @@ public class HorizontalProgressBar extends ProgressBar {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);//默认给一个值
         int height = measureHeight(heightMeasureSpec);
-        setMeasuredDimension(width, height);
         mRealWidth = width - getPaddingLeft() - getPaddingRight();//拿到真正的宽度
+        setMeasuredDimension(width, height);
+
     }
 
     /**
@@ -144,7 +145,6 @@ public class HorizontalProgressBar extends ProgressBar {
             if (mode == MeasureSpec.AT_MOST) {
                 height = Math.min(height, size);
             }
-
         }
         return height;
     }
@@ -157,8 +157,46 @@ public class HorizontalProgressBar extends ProgressBar {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         canvas.save();
-
         canvas.translate(getPaddingLeft(), getHeight() / 2);//移动画布到progressbar的中间
+
+        boolean noNeedUnreach = false;//是否需要绘制未到达部分的内容
+
+        //得到当前的总比例
+        float ratio = getProgress() * 1.0f / getMax();//得到应该展示的比例
+        Log.i(TAG, "progress:" + getProgress());
+        Log.i(TAG, "max" + getMax());
+        //得到绘制的已完成的长度
+        float progressX = ratio * mRealWidth;
+        //进去与文字的间隙
+        float endX = progressX - mTextMargin / 2;
+
+        String text = getProgress() + "%";
+        //得到文字的长度
+        float mTextWidth = mPaint.measureText(text);
+
+        if (progressX + mTextWidth >= mRealWidth) {
+            progressX = mRealWidth - mTextWidth;//重新赋值
+            noNeedUnreach = true;
+        }
+        if (endX > 0) {
+            //画到达的内容
+            mPaint.setColor(mReachColor);
+            mPaint.setStrokeWidth(mReachHeight);
+            canvas.drawLine(0, 0, endX, 0, mPaint);
+        }
+        //画文字内容
+        mPaint.setColor(mTextColor);
+        float y = -(mPaint.descent() + mPaint.ascent()) / 2;
+        canvas.drawText(text, progressX, y, mPaint);
+
+
+        //画没有完成的部分
+        if (!noNeedUnreach) {
+            mPaint.setColor(mUnreachColor);
+            mPaint.setStrokeWidth(mUnreachHeight);
+            canvas.drawLine(progressX + mTextWidth + mTextMargin / 2, 0, mRealWidth, 0, mPaint);
+        }
+
         canvas.restore();
     }
 
